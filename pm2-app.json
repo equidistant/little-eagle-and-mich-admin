@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "little-eagle-and-mich",
+            "script": "npm",
+            "args" : "run start"
+        }
+    ]
+}
