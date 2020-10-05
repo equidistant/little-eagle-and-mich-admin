@@ -9,6 +9,7 @@ const PostPage = ({ username }) => {
   const [description, setDescription] = useState('Dva tjedna u zemlji čaja, cimeta i kokosa - Šri Lanka')
   const [tags, setTags] = useState('travel blog, sri lanka, kandy, nuwara eliya')
   const [coverImg, setCoverImg] = useState('https://littleeagle.s3.eu-central-1.amazonaws.com/gallery/high/travels/img63.jpg')
+  const [gallery, setGallery] = useState('details')
   const [text, setText] = useState(`<BOLD>Kako je izgledao naš dvotjedni plan i što smo sve odlučili vidjeti? Što nas je oduševilo a bez čega smo ipak mogli - potražite u nastavku.</BOLD><HEADER>Prvi naslov</HEADER><TXT>Onda ide druga malo duza jer ima vise rijeci u sebi. I onda treca, mozda najduza mozda najkraca, tko zna. Tu sad pisemo neki blog. Ovo je prvi put da pisemo ovako neku dugu i recenicu i onda jos malo.</TXT><TXT>Jos jedna vrlo dugacka recenica jer mi imamo toliko toga za reci.</TXT><PORTRAITS>https://littleeagle.s3.eu-central-1.amazonaws.com/gallery/high/people/img2.jpg https://littleeagle.s3.eu-central-1.amazonaws.com/gallery/high/people/img7.jpg</PORTRAITS><IMG>https://littleeagle.s3.eu-central-1.amazonaws.com/gallery/high/travels/img35.jpg</IMG><HEADER>Prvi naslov</HEADER><TXT>Onda ide druga malo duza jer ima vise rijeci u sebi. I onda treca, mozda najduza mozda najkraca, tko zna. Tu sad pisemo neki blog. Ovo je prvi put da pisemo ovako neku dugu i recenicu i onda jos malo.</TXT><TXT>Jos jedna vrlo dugacka recenica jer mi imamo toliko toga za reci.</TXT><PORTRAITS>https://littleeagle.s3.eu-central-1.amazonaws.com/gallery/high/people/img2.jpg https://littleeagle.s3.eu-central-1.amazonaws.com/gallery/high/people/img7.jpg</PORTRAITS><IMG>https://littleeagle.s3.eu-central-1.amazonaws.com/gallery/high/travels/img35.jpg</IMG>`)
   const [preview, setPreview] = useState('')
   const [message, setMessage] = useState('')
@@ -32,7 +33,7 @@ const PostPage = ({ username }) => {
       const nodes = parseText(text.trim().replace(/(\r\n|\n|\r)/gm,''))
       const tagsArray = tags.split(', ').map(tag => tag.trim())
       createPost({
-        data: { title, longTitle, description, coverImg, nodes, tags: tagsArray }, 
+        data: { title, longTitle, description, coverImg, gallery, nodes, tags: tagsArray }, 
         callback: (message) => {
           setMessage(message)
         },
@@ -64,6 +65,10 @@ const PostPage = ({ username }) => {
         <InputRow>
           <Label>Cover image:</Label>
           <Input type='text' value={coverImg} onChange={(e) => setCoverImg(e.target.value)}  placeholder='Enter cover image url'/>
+        </InputRow>
+        <InputRow>
+          <Label>Gallery title:</Label>
+          <Input type='text' value={gallery} onChange={(e) => setGallery(e.target.value)}  placeholder='Enter gallery title'/>
         </InputRow>
         <TextArea type='text' value={text} onChange={(e) => setText(e.target.value)}  placeholder='Enter post text (with tags i.e. <TXT>, <IMG> etc.)'/>
         <Buttons>
